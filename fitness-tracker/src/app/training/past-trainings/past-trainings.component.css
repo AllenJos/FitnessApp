@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+.tableDiv {
+  width: 80%;
+  display: block;
+  position: relative;
+  left: 10%;
+}

@@ -1,0 +1,54 @@
+<section class="signup-form">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field hintLabel="Please enter a valid email id.">
+      <input
+        matInput
+        placeholder="Email"
+        type="email"
+        ngModel
+        name="email"
+        email
+        required
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')">
+        Form is empty.
+      </mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">
+        Email is invalid.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="Should be atleast 6 characters long.">
+      <input
+        matInput
+        placeholder="Password"
+        type="password"
+        ngModel
+        name="password"
+        required
+        minlength="6"
+        #pwInput="ngModel"
+      />
+      <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Choose a Date" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      [disabled]="f.invalid"
+      type="submit"
+      color="primary"
+    >
+      Submit
+    </button>
+  </form>
+</section>
